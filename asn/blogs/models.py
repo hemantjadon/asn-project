@@ -3,7 +3,7 @@ from django.conf import settings
 # Create your models here.
 
 class Blog(models.Model):
-	author = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='blog_author')
+	author = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='blogs')
 	timestamp = models.DateTimeField(auto_now_add=True)
 	title = models.CharField(max_length=75,blank=False,null=True)
 	content = models.TextField(blank=False,null=True)
@@ -15,8 +15,8 @@ class Blog(models.Model):
 		return "%s by %s on %s"%(self.title,self.author.get_full_name(),self.timestamp)
 
 class BlogComment(models.Model):
-	blog = models.ForeignKey(Blog,related_name='blog_comments',blank=False)
-	author = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='blog_comment_author')
+	blog = models.ForeignKey(Blog,related_name='comments',blank=False)
+	author = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='blog_comment')
 	timestamp = models.DateTimeField(auto_now_add=True)
 	comment = models.TextField(blank=True,null=True)
 	
