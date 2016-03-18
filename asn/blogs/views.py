@@ -34,7 +34,6 @@ class BlogDelete(generics.DestroyAPIView):
 
 class BlogCommentList(generics.ListAPIView):
 	serializer_class = BlogCommentSerializer
-	
 	def get_queryset(self):
 		blogID = self.kwargs['blogID']
 		try:
@@ -42,15 +41,22 @@ class BlogCommentList(generics.ListAPIView):
 			return BlogComment.objects.filter(blog = blog)
 		except Blog.DoesNotExist:
 			blog = None
-			return []
+			return BlogComment.objects.none()
 	
 class BlogCommentCreate(generics.CreateAPIView):
 	queryset = BlogComment.objects.all()
 	serializer_class = BlogCommentSerializer
 	
 class BlogCommentDetail(generics.RetrieveAPIView):
-	queryset = BlogComment.objects.all()
 	serializer_class = BlogCommentSerializer
+	def get_queryset(self):
+		blogID = self.kwargs['blogID']
+		try:
+			blog = Blog.objects.get(pk=blogID)
+			return BlogComment.objects.filter(blog = blog)
+		except Blog.DoesNotExist:
+			blog = None
+			return BlogComment.objects.none()
 	
 class BlogCommentUpdate(generics.UpdateAPIView):
 	queryset = BlogComment.objects.all()

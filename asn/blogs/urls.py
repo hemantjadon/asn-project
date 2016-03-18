@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/update/$', views.BlogUpdate.as_view(),name='blog-update'),
     url(r'^(?P<pk>[0-9]+)/delete/$', views.BlogDelete.as_view(),name='blog-delete'),
     
-    url(r'^(?P<blogID>[0-9]+)/comments/$', views.BlogCommentList.as_view(),name='blog-comment-list'),
+    url(r'^(?P<blogID>[0-9]+)/comment/$', views.BlogCommentList.as_view(),name='blog-comment-list'),
     url(r'^comment/create/$',views.BlogCommentCreate.as_view(),name='blog-comment-create'),
 	url(r'^(?P<blogID>[0-9]+)/comment/(?P<pk>[0-9]+)/$', views.BlogCommentDetail.as_view(),name='blog-comment-detail'),
     url(r'^(?P<blogID>[0-9]+)/comment/(?P<pk>[0-9]+)/update/$', views.BlogCommentUpdate.as_view(),name='blog-comment-update'),
