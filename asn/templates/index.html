@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+   <head lang="en">
+		<title>ASN - </title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		
+		<!-- 1. Load libraries -->
+		<!-- IE required polyfills, in this exact order -->
+		<!--<script src={% static "node_modules/es6-shim/es6-shim.min.js" %}></script>-->
+		<!--<script src={% static "node_modules/systemjs/dist/system-polyfills.js" %}></script>-->
+		<!--<script src={% static "node_modules/angular2/es6/dev/src/testing/shims_for_IE.js" %}></script>-->
+		
+		<!-- 2. Configure SystemJS -->
+		<script src={% static "node_modules/systemjs/dist/system.src.js" %}></script>
+		<script>
+			System.config({
+				defaultJSExtensions: true,
+			});
+			
+			System.import('/static/ng-main/app/js/main')
+				.then(null, console.error.bind(console));
+		</script>
+		
+		<!-- 3. Load Angular Libraries-->
+		<script src={% static "node_modules/angular2/bundles/angular2-polyfills.js" %}></script>
+		<script src={% static "node_modules/rxjs/bundles/Rx.js" %}></script>
+		<script src={% static "node_modules/angular2/bundles/angular2.dev.js" %}></script>
+		<script src={% static "node_modules/angular2/bundles/router.dev.js" %}></script>
+	
+   </head>
+   <body>
+	   <my-app>Loading</my-app>
+   </body>
+</html>

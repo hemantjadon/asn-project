@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from .views import APIRoot
+from .views import APIRoot,HomePage
 
 urlpatterns = [
-    url(r'^api/$',APIRoot.as_view()),
+    url(r'^',HomePage,name='home'),
+    url(r'^api/$',APIRoot.as_view(),name='api'),
     url(r'^api/users/',include('user.urls')),
 	url(r'^api/blogs/',include('blogs.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
